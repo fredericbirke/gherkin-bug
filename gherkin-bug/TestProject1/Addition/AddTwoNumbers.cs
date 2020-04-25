@@ -1,10 +1,17 @@
 using Xunit;
+using Xunit.Abstractions;
 using Xunit.Gherkin.Quick;
 
 [FeatureFile("./Addition/AddTwoNumbers.feature")]
 public sealed class AddTwoNumbers : Feature
 {
+    private readonly ITestOutputHelper _testOutputHelper;
     private readonly Calculator _calculator = new Calculator();
+
+    public AddTwoNumbers(ITestOutputHelper testOutputHelper)
+    {
+        _testOutputHelper = testOutputHelper;
+    }
 
     [Given(@"I chose (\d+) as first number")]
     public void I_chose_first_number(int firstNumber)
